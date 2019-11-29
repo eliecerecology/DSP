@@ -6,10 +6,10 @@
 % Sample length 2^12 samples
 SSS = 622;
 srate  = 8000; % hz
-time  = 0:(10/(2^12)):2-1/srate; % time in seconds 0 to 2 seconds
+time  = 0:(1/(2^12)):2-1/srate; % time in seconds 0 to 2 seconds
 pnts   = length(time); % number of time points
 length(pnts);
-signal = 10 * sin( 2*pi*SSS*time ); 
+signal = 1 * sin( 2*pi*SSS*time ); 
 
 
 figure(1), clf
@@ -17,25 +17,12 @@ plot(time, signal,'ks-','linewidth',2,'markerfacecolor','w')
 xlabel('Time (sec.)'), ylabel('Amplitude')
 title('A sine wave.')
 
-SNR = 10*log10(Psignal/Pnoise) ????
+%SNR = 10*log10(Psignal/Pnoise) ????
 
 % Question 2:
 % Use Fourier Transformation to generate the power spectrum of the previous sample:
 % Use frequency [0-Fn] in horizontal axis % WHAT IS Fn??
 % Use desibels in vertical axis
-
-srate  = 8000; % hz
-time  = 0:(10/(2^12)):10-1/srate; % time in seconds 
-
-pnts   = length(time); % number of time points
-length(pnts)
-signal = 10 * sin( 2*pi*622*time ); 
-
-figure(1), clf
-plot(time, signal,'ks-','linewidth',2,'markerfacecolor','w')
-xlabel('Time (sec.)'), ylabel('Amplitude')
-title('A sine wave.')
-
 fourTime = (0:pnts-1)/pnts;
 fCoefs   = zeros(size(signal));
 

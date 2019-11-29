@@ -127,5 +127,6 @@ noise = (b-a).*rand(length(n),1) + a;
 x = 0.25*exp(-t*0.25).*sin(2*pi*f*t) .+ noise ;
 %plot(t,x)
 
+
 sound(x)
 
