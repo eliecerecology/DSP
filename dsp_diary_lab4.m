@@ -44,9 +44,9 @@ figure; freqz(bbns,aan,1024,Fs)
 %% Cartesian and polar coordinates
 % z = x + y*i
 % z = r*exp(i*omega)
-angle = pi/23;      % angle frequency (in rad)
+angle = pi/90;      % angle frequency (in rad)
 % angle frequency and physical frequency
-ff = 10000;         % 10 kHz, physical frequency
+ff = 1000;         % 10 kHz, physical frequency
 angle = 2*pi*ff/Fs; % matching angle (angle frequency)
 
 % Point on the unit circle
