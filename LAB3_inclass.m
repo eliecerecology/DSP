@@ -61,8 +61,8 @@ grid; hold off
 % Question 4:
 
 SNR = 50;
-SSS = 662;                   % dB, signal-to-noise ratio (SNR)
-Fs = 8000;                 % sampling frequency, just for fun it is half of the CD standard 44,1 kHz
+SSS = 662;                  
+Fs = 8000;                 
 tt = 0:(1/8000):2;
 tt = tt(1:4096); 
 
@@ -76,8 +76,8 @@ specgram (y);
 %signal amplitude decreases exponentially with time constant of 0.2 s
 % maximum amplitude is 1
 
-t = 0:1/5:1; % 1/5 == 0.2
-y = 1.*exp(-t).* chirp (t, 100, 1, 200, "linear");
+d = 0:1/5:1; % 1/5 == 0.2
+y = 1.*exp(-d).* chirp (t, 100, 1, 200, "linear");
 sound(y,Fs);
 
 % add white noise with standard deviation of 0.02

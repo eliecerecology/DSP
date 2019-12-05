@@ -8,11 +8,13 @@ Fs = 8000;  % sampling frequency 8 kHz
 f = 1000;   % frequency to be rejected
 z_q1 = exp(i*2*pi*f/Fs);
 b_q1 = poly([z_q1 conj(z_q1)]);
+
 % pole is placed near to the zero, poles distance to the zero determines
 % the bandwidth of the notch filter
 f3db = 100; % -3dB bandwidth is 100Hz
 p_q1 = (1-2*pi*((f3db/Fs)/2))*z_q1;
 a_q1 = poly([p_q1 conj(p_q1)]);
+
 % then let's scale the system to 0dB baseline
 gg = max(abs(freqz(b_q1, a_q1)));
 b_q1 = b_q1/gg;
