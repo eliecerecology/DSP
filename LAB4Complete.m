@@ -44,7 +44,7 @@ bb = [1,2,2,1];
 aa = [1, -0.4,0,0];
 % zeros and poles
 zplane(bb,aa)
-roots(bb) % zero locatioins
+roots(bb) 
 roots(aa)
 
 % test signal xx
