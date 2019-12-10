@@ -95,23 +95,44 @@ freqz(Poles, Zeros, 1024, 22050)
 
 %create a signal (noisy)
 fs = [8000, 11025, 22050, 44100];
-f = 3.5;
-n = 0:(1/fs(1)):5;
-n = n(1:5001);
+f = 622;
+n = 0:(1/fs(1)):1;
+n = n(1:100);
 
 signal1 = sin(2*pi*f*n);
 plot(signal1)
 
-a = 0.05;
-b = 0.1;
-noise = (b-a).*rand(length(n),1) + a;
-
 % I found a better function to add noise
-z = signal1 .+ noise;
+n = 0:(1/fs(1)):1;
+n = n(1:100);
+z1 = signal1 + rand(1, length(n));
+n = 0:(1/fs(2)):1;
+n = n(1:100);
+z2 = signal1 + rand(1, length(n));
+n = 0:(1/fs(3)):1;
+n = n(1:100);
+z3 = signal1 + rand(1, length(n));
+n = 0:(1/fs(4)):1;
+n = n(1:100);
+z4 = signal1 + rand(1, length(n));
 
 
-plot(z)
+subplot(2,2,1);
+y8000 = filter(Poles,Zeros,z1); % 
+stem(y8000)
+title('Output filter fs = 8000Hz');
 
+subplot(2,2,2);
+y11025 = filter(Poles,Zeros,z2); % 
+stem(y11025)
+title('Output filter fs = 11025Hz');
 
+subplot(2,2,3);
+y44100 = filter(Poles,Zeros,z2); % 
+stem(y44100)
+title('Output filter fs = 44100Hz');
 
-
+subplot(2,2,4);
+y22050 = filter(Poles,Zeros,z2); % 
+stem(y22050)
+title('Output filter fs = 22050Hz');
