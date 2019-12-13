@@ -4,10 +4,12 @@ pkg load signal
 Fs = 8000;  % sampling frequency 8 kHz
 f = 800;   % frequency to be rejected
 z_q1 = exp(i*2*pi*f/Fs);
+%zeros
 b_q1 = poly([z_q1 conj(z_q1)]);
 
 
-% pole is placed near to the zero, poles distance to the zero determines
+% pole:
+% is placed near to the zero, poles distance to the zero determines
 % the bandwidth of the notch filter
 f3db = 200; % -3dB bandwidth is 100Hz
 
@@ -129,12 +131,39 @@ denoms_down = [conv(poles_f1, poles_f2)];
 figure(6); zplane(numers_up, denoms_down); % THE figure matches Too! exciting!
 figure(7); freqz( numers_up, denoms_down,1024, Fs);
 
-% QUESTION 6:
+% QUESTION 6: SYSTEM IN PARALLEL
 
 % Put in paralell filter from Q1 and Q4 : Q1 + Q4
+a_q12 = resize(a_q1, 1, 5)
+b_q12 = resize(b_q1, 1, 5)
+
+aa = [(a_q12 .+ a_q4)];
+bb = [(b_q12 .+ b_q4)];
+
+figure(8); zplane(bb, aa); % THE figure matches Too! exciting
+figure(9); freqz( bb, aa,1024, Fs);
+
+% QUESTION 7: SYSTEM IN CASCADE
+aa = [conv(a_q1, a_q4)];
+bb = [conv(b_q1, b_q4)];
+
+figure(10); zplane(bb, aa); % THE figure matches Too! exciting
+figure(11); freqz( bb, aa,1024, Fs);
+
+% QUESTION 8: changing the direction of the real axis
+za = (roots(aa));
+change_sign = [1, -1, 1, -1, 1, -1];
+change = reshape(change_sign, 6, 1);
+
+za_real = real(za) .* change; % change to every other element
 
 
+zaa = complex(real(za_real), imag(za));
 
+zb = (roots(bb));
+zb_real = real(zb) .* change;
 
+zbb = complex(real(zb_real), imag(zb));
 
-
+figure(12); zplane(zbb, zaa); % THE figure matches Too! exciting
+figure(13); freqz( zbb, zaa,1024, Fs);
