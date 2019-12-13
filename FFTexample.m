@@ -20,6 +20,8 @@
     % Frequency analysis
     f = 0 : fs/noSamples : fs - fs/noSamples; % Frequency vector
     % FFT
+    raw = fft(/x);
+    stem(x);
     x_fft = abs(fft(x)/noSamples);
     xn_fft = abs(fft(xn)/noSamples);
     % Plot
